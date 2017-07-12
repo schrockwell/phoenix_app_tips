@@ -4,7 +4,7 @@
 
 ```elixir
 def show(conn, %{"id" => id}) do
-  post = Repo.get(Post, id)
+  post = MyApp.Repo.get(Post, id)
   render(conn, "show.html", post: post)
 end
 ```
@@ -13,7 +13,7 @@ end
 
 ```elixir
 def show(conn, %{"id" => id}) do
-  post = Posts.get(id)
+  post = MyApp.Posts.get(id)
   render(conn, "show.html", post: post)
 end
 ```
