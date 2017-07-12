@@ -13,7 +13,7 @@ end
 
 ```elixir
 def show(conn, %{"id" => id}) do
-  post = MyApp.Posts.get_post(id)
+  post = MyApp.Blog.get_post(id)
   render(conn, "show.html", post: post)
 end
 ```
@@ -25,13 +25,13 @@ Ecto's `Repo` is an implementation detail internal to your application that shou
 ### Don't do this:
 
 ```elixir
-MyApp.Posts.update(params, post)
+MyApp.Posts.update_post(params, post)
 ```
 
 ### Instead, do this:
 
 ```elixir
-MyApp.Posts.update(post, params) # Or, if you prefer: post |> MyApp.Posts.update(params)
+MyApp.Blog.update_post(post, params) # Or, if you prefer: post |> MyApp.Posts.update(params)
 ```
 
 Elixir isn't object-oriented, but the pipe operator `|>` lets us mutate data in a functional way that still feels like calling a method on an object. Take advantage of that exepectation by designing your functions to take the data to be mutated (or a pointer to that data, like an `id`) as the first parameter.
