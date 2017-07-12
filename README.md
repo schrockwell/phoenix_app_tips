@@ -40,7 +40,7 @@ Elixir isn't object-oriented, but the pipe operator `|>` lets us mutate data in 
 
 ```elixir
 # lib/my_app/blog/post.ex
-defmodule Post do
+defmodule MyApp.Blog.Post do
   import Ecto.Query
   
   def published(query \\ Post) do
