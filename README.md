@@ -1,4 +1,4 @@
-## Don't reference `Repo` in a controller
+## Don't reference `Repo` from a controller, view, or channel
 
 ### Don't do this:
 
