@@ -65,6 +65,36 @@ end
 
 Defining simple, composable queries directly on the schema module is very convenient for building up more complex queries at higher levels.
 
+## Define changesets directly on the schema module
+
+```elixir
+# lib/my_app/blog/post.ex
+defmodule MyApp.Blog.Post do
+  import Ecto.Changeset
+  
+  def update(post, params) do
+    cast(post, params, [:title, :body])
+  end
+  
+  def publish(post) do
+    change(post, published_at: DateTime.now_utc)
+  end
+end
+
+# lib/my_app/blog/blog.ex
+defmodule MyApp.Blog do
+  def update_post(post, params) do
+    post |> MyApp.Blog.Post.update(params) |> Repo.update
+  end
+  
+  def publish_post(post) do
+    post |> MyApp.Blog.Post.publish |> Repo.update
+  end
+end
+```
+
+Defining simple, composable changesets directly on the schema module is very convenient for building up more complex queries at higher levels.
+
 ## Pass the current user directly into authenticated controller actions
 
 ```elixir
