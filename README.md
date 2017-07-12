@@ -18,6 +18,4 @@ def show(conn, %{"id" => id}) do
 end
 ```
 
-### Reasoning
-
 Ecto's `Repo` is an implementation detail internal to your application that should not be exposed to the web layer. Data persistence can be backed by many things: a relational database, a document database, an ETS table, a flat file, an external API, a GenServer… the list goes on. Leave it up to the Context to hide that detail from your external web interface.
