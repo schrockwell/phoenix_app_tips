@@ -25,7 +25,7 @@ Ecto's `Repo` is an implementation detail internal to your application that shou
 ### Don't do this:
 
 ```elixir
-MyApp.Posts.update_post(params, post)
+MyApp.Blog.update_post(params, post)
 ```
 
 ### Instead, do this:
