@@ -64,3 +64,41 @@ end
 ```
 
 Defining simple, composable queries directly on the schema module is very convenient for building up more complex queries at higher levels.
+
+## Pass the current user directly into authenticated controller actions
+
+```elixir
+# lib/my_app/web.ex
+defmodule MyApp.Web do
+  # ...Phoenix-generated scopes here...
+  
+  def authenticated_controller do
+    quote do
+      use MyApp.Web, :controller
+      
+      # Example using Guardian
+      plug Guardian.Plug.EnsureAuthenticated, handler: MyApp.Web.AuthHandler
+  
+      # Override Phoenix.Controller.action/2 callback
+      def action(conn, params) do
+        args = [conn, params, Guardian.Plug.current_resource(conn)]
+        apply(__MODULE__, action_name(conn), args)
+      end
+    end
+  end
+end
+
+# lib/my_app/web/controllers/post_controller.ex
+defmodule MyApp.Web.PostController do
+  # Use the new scope
+  use MyApp.Web, :authenticated_controller
+  
+  # Notice the extra parameter
+  def new(conn, params, current_user) do
+    changeset = MyApp.Blog.new_post(current_user, params)
+    render(conn, "new.html", changeset: changeset)
+  end
+end
+```
+
+By overriding the default Phoenix controller `action/2` callback, you can inject custom parameters into each controller action. For authenticated controllers, knowing the `current_user` is often required, so pass it in directly to the function for convenience.
