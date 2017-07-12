@@ -3,7 +3,7 @@
 ### Don't do this:
 
 ```elixir
-def show(conn, %{"id" => id}) do
+def show(conn, %{"post_id" => id}) do
   post = MyApp.Repo.get(Post, id)
   render(conn, "show.html", post: post)
 end
