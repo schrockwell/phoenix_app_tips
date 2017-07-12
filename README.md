@@ -13,7 +13,7 @@ end
 
 ```elixir
 def show(conn, %{"id" => id}) do
-  post = MyApp.Blog.get_post(id)
+  post = MyApp.Blog.get_post!(id)
   render(conn, "show.html", post: post)
 end
 ```
