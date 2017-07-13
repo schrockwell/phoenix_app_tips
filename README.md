@@ -36,7 +36,7 @@ MyApp.Blog.update_post(post, params) # Or, if you prefer: post |> MyApp.Posts.up
 
 Elixir isn't object-oriented, but the pipe operator `|>` lets us mutate data in a functional way that still feels like calling a method on an object. Take advantage of that exepectation by designing your functions to take the data to be mutated (or a pointer to that data, like an `id`) as the first parameter.
 
-## Define queries directly on the schema module
+## Define Ecto queries directly on the schema module
 
 ```elixir
 # lib/my_app/blog/post.ex
@@ -65,7 +65,7 @@ end
 
 Defining simple, composable queries directly on the schema module is very convenient for building up more complex queries at higher levels.
 
-## Define changesets directly on the schema module
+## Define Ecto changesets directly on the schema module
 
 ```elixir
 # lib/my_app/blog/post.ex
@@ -84,11 +84,15 @@ end
 # lib/my_app/blog/blog.ex
 defmodule MyApp.Blog do
   def update_post(post, params) do
-    post |> MyApp.Blog.Post.update(params) |> Repo.update
+    post
+    |> MyApp.Blog.Post.update(params)
+    |> Repo.update
   end
   
   def publish_post(post) do
-    post |> MyApp.Blog.Post.publish |> Repo.update
+    post
+    |> MyApp.Blog.Post.publish
+    |> Repo.update
   end
 end
 ```
