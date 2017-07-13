@@ -31,7 +31,7 @@ MyApp.Blog.update_post(params, post)
 ### Instead, do this:
 
 ```elixir
-MyApp.Blog.update_post(post, params) # Or, if you prefer: post |> MyApp.Posts.update(params)
+MyApp.Blog.update_post(post, params)
 ```
 
 Elixir isn't object-oriented, but the pipe operator `|>` lets us mutate data in a functional way that still feels like calling a method on an object. Take advantage of that exepectation by designing your functions to take the data to be mutated (or a pointer to that data, like an `id`) as the first parameter.
