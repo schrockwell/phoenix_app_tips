@@ -4,7 +4,7 @@
 
 ```elixir
 def show(conn, %{"id" => id}) do
-  post = MyApp.Repo.get(Post, id)
+  post = MyApp.Repo.get!(Post, id)
   render(conn, "show.html", post: post)
 end
 ```
