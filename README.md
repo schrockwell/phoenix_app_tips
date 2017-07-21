@@ -1,3 +1,9 @@
+## Who and what is this for?
+
+This document exists for Elixir and Phoenix application developers to learn from the design missteps of others.
+
+It's not a manifesto or a bible or even a style guide – it's just a list of guidelines to consider *before* laying out the structure of an application. With a little foresight, the cumulative effect of these individual tips will result in a consistent application structure and, hopefully, a boost in productivity.
+
 ## Don't reference `Repo` from a controller, view, or channel
 
 ### Don't do this:
